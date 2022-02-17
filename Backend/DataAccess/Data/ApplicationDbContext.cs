@@ -15,7 +15,7 @@ namespace DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new UserEntityTypeConfiguration());
+            builder.ApplyConfiguration(new UsersEntityTypeConfiguration());
         }
     }
 }

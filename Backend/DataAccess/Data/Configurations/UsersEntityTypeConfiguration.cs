@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Data.Configurations
 {
-    public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
+    public class UsersEntityTypeConfiguration : IEntityTypeConfiguration<User>
     {
         private const int _nameMaxLength = 30;
 
