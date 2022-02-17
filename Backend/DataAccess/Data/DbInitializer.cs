@@ -8,11 +8,9 @@ namespace DataAccess.Data
         public static async Task Initialize(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
-
             if (!context.Users.Any())
             {
                 await context.Users.AddRangeAsync(GetPreconfiguredUsers());
-
                 await context.SaveChangesAsync();
             }
         }
