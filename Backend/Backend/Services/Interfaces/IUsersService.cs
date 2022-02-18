@@ -7,6 +7,6 @@ namespace Backend.Services.Interfaces
         Task<int> CreateUserAsync(BaseUserDto userDto);
         Task<bool> UpdateUserAsync(UserDto userDto);
         Task<bool> DeleteUserAsync(int id);
-        Task<IEnumerable<UserDto>> GetUsersAsync();
+        Task<IEnumerable<UserDto>> GetAllUsersAsync();
     }
 }

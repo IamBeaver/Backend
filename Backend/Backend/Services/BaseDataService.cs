@@ -16,7 +16,7 @@ namespace Backend.Services
             _logger = logger;
         }
 
-        protected async Task<T1> ExecuteSafe<T1>(Func<Task<T1>> action)
+        protected async Task<TData> ExecuteSafe<TData>(Func<Task<TData>> action)
         {
             using (var transaction = _dbContext.Database.BeginTransaction())
             {
@@ -30,7 +30,7 @@ namespace Backend.Services
                 {
                     transaction.Rollback();
                     _logger.LogError(ex, "Transaction is rollbacked");
-                    return default(T1) !;
+                    return default(TData) !;
                 }
             }
         }

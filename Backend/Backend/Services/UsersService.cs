@@ -37,7 +37,7 @@ namespace Backend.Services
             });
         }
 
-        public async Task<IEnumerable<UserDto>> GetUsersAsync()
+        public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
         {
             return await ExecuteSafe(async () =>
             {
