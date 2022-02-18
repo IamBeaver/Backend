@@ -1,6 +1,8 @@
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Backend.Repository.Interfaces;
+using Backend.Repository;
 
 var configuration = GetConfiguration();
 
@@ -10,7 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddDbContextFactory<ApplicationDbContext>(opts => opts.UseNpgsql(configuration["ConnectionString"]));
+builder.Services.AddTransient<IUsersRepository, UsersRepository>();
 
 var app = builder.Build();
 
