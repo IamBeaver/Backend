@@ -1,12 +1,13 @@
-﻿using DataAccess.Data.Entities;
+﻿using Backend.Models.Dtos;
+using DataAccess.Data.Entities;
 
 namespace Backend.Repository.Interfaces
 {
     public interface IUsersRepository
     {
-        Task<int> Create(string firstName, string lastName, int age);
-        Task<bool> Update(int id, string firstName, string lastName, int age);
+        Task<int> Create(BaseUserDto userDto);
+        Task<bool> Update(UserDto userDto);
         Task<bool> Delete(int id);
-        Task<IEnumerable<User>> Read();
+        Task<IEnumerable<User>> GetUsers();
     }
 }

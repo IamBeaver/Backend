@@ -1,4 +1,6 @@
-﻿using Backend.Repository.Interfaces;
+﻿using AutoMapper;
+using Backend.Models.Dtos;
+using Backend.Repository.Interfaces;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -8,15 +10,19 @@ namespace Backend.Repository
     public class UsersRepository : IUsersRepository
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public UsersRepository(ApplicationDbContext dbContext)
+        public UsersRepository(
+            ApplicationDbContext dbContext,
+            IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public async Task<int> Create(string firstName, string lastName, int age)
+        public async Task<int> Create(BaseUserDto userDto)
         {
-            var user = await _dbContext.Users.AddAsync(new User { FirstName = firstName, LastName = lastName, Age = age });
+            var user = await _dbContext.Users.AddAsync(new User { FirstName = userDto.FirstName, LastName = userDto.LastName, Age = userDto.Age });
             await _dbContext.SaveChangesAsync();
             return user.Entity.Id;
         }
@@ -36,22 +42,20 @@ namespace Backend.Repository
             return true;
         }
 
-        public async Task<IEnumerable<User>> Read()
+        public async Task<IEnumerable<User>> GetUsers()
         {
             return await _dbContext.Users.ToListAsync();
         }
 
-        public async Task<bool> Update(int id, string firstName, string lastName, int age)
+        public async Task<bool> Update(UserDto userDto)
         {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userDto.Id);
             if (user is null)
             {
                 return false;
             }
 
-            user.FirstName = firstName;
-            user.LastName = lastName;
-            user.Age = age;
+            user = _mapper.Map<User>(userDto);
 
             _dbContext.Update(user);
             await _dbContext.SaveChangesAsync();
