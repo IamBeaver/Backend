@@ -39,5 +39,13 @@ namespace Backend.Controllers
             var result = await _usersService.CreateUserAsync(_mapper.Map<BaseUserDto>(request));
             return Ok(result);
         }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(UpdateUserResponse), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateUser(UpdateUserRequest<int> request)
+        {
+            var result = await _usersService.UpdateUserAsync(_mapper.Map<UserDto>(request));
+            return Ok(result);
+        }
     }
 }

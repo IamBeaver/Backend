@@ -11,6 +11,7 @@ namespace Backend.Mapping
         {
             CreateMap<User, UserDto>();
             CreateMap<CreateUserRequest, BaseUserDto>();
+            CreateMap<UpdateUserRequest<int>, UserDto>();
         }
     }
 }
