@@ -31,5 +31,29 @@ namespace Backend.Controllers
             var result = await _usersService.GetAllUsersAsync();
             return Ok(result);
         }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(CreateUserResponse), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> CreateUser(CreateUserRequest request)
+        {
+            var result = await _usersService.CreateUserAsync(_mapper.Map<BaseUserDto>(request));
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(typeof(DeleteUserResponse), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeleteUser(DeleteUserRequest request)
+        {
+            var result = await _usersService.DeleteUserAsync(request.Id);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(UpdateUserResponse), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateUser(UpdateUserRequest request)
+        {
+            var result = await _usersService.UpdateUserAsync(_mapper.Map<UserDto>(request));
+            return Ok(result);
+        }
     }
 }
