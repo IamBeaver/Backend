@@ -40,6 +40,14 @@ namespace Backend.Controllers
             return Ok(result);
         }
 
+        [HttpDelete]
+        [ProducesResponseType(typeof(DeleteUserResponse), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeleteUser(DeleteUserRequest<int> request)
+        {
+            var result = await _usersService.DeleteUserAsync(request.Id);
+            return Ok(result);
+        }
+
         [HttpPut]
         [ProducesResponseType(typeof(UpdateUserResponse), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateUser(UpdateUserRequest<int> request)
