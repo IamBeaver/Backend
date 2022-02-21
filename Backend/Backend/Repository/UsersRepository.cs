@@ -49,15 +49,12 @@ namespace Backend.Repository
 
         public async Task<bool> Update(UserDto userDto)
         {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userDto.Id);
-            if (user is null)
+            var local = _dbContext.Set<User>().Local.FirstOrDefault(entry => entry.Id.Equals(userDto.Id));
+            if (local != null)
             {
-                return false;
+                _dbContext.Entry(local).State = EntityState.Detached;
             }
-
-            user = _mapper.Map<User>(userDto);
-
-            _dbContext.Update(user);
+            _dbContext.Entry(_mapper.Map<User>(userDto)).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
             return true;
         }
