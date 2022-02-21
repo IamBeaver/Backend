@@ -1,7 +1,6 @@
 ﻿namespace Backend.Models.Responses
 {
-    public class CreateUserResponse<T>
+    public class CreateUserResponse : BaseUserResponse
     {
-        public T Id { get; set; }
     }
 }

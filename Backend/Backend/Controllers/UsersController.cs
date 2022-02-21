@@ -33,7 +33,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(CreateUserResponse<int>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(CreateUserResponse), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> CreateUser(CreateUserRequest request)
         {
             var result = await _usersService.CreateUserAsync(_mapper.Map<BaseUserDto>(request));
@@ -42,7 +42,7 @@ namespace Backend.Controllers
 
         [HttpDelete]
         [ProducesResponseType(typeof(DeleteUserResponse), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> DeleteUser(DeleteUserRequest<int> request)
+        public async Task<IActionResult> DeleteUser(DeleteUserRequest request)
         {
             var result = await _usersService.DeleteUserAsync(request.Id);
             return Ok(result);
@@ -50,7 +50,7 @@ namespace Backend.Controllers
 
         [HttpPut]
         [ProducesResponseType(typeof(UpdateUserResponse), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> UpdateUser(UpdateUserRequest<int> request)
+        public async Task<IActionResult> UpdateUser(UpdateUserRequest request)
         {
             var result = await _usersService.UpdateUserAsync(_mapper.Map<UserDto>(request));
             return Ok(result);

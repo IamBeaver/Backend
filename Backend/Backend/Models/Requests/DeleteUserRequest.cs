@@ -1,7 +1,6 @@
 ﻿namespace Backend.Models.Requests
 {
-    public class DeleteUserRequest<T>
+    public class DeleteUserRequest : BaseUserRequest
     {
-        public T Id { get; set; }
     }
 }

@@ -10,8 +10,9 @@ namespace Backend.Mapping
         public MappingProfile()
         {
             CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
             CreateMap<CreateUserRequest, BaseUserDto>();
-            CreateMap<UpdateUserRequest<int>, UserDto>();
+            CreateMap<UpdateUserRequest, UserDto>();
         }
     }
 }
