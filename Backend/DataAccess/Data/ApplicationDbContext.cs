@@ -20,11 +20,11 @@ namespace DataAccess.Data
             builder.Entity<User>().HasData(
                 new List<User>
                 {
-                    new User() { FirstName = "Igor", LastName = "Bobro", Age = 22 },
-                    new User() { FirstName = "Andrew", LastName = "Ivanov", Age = 31 },
-                    new User() { FirstName = "Stas", LastName = "Maratov", Age = 24 },
-                    new User() { FirstName = "Max", LastName = "Braun", Age = 26 },
-                    new User() { FirstName = "Alex", LastName = "Perov", Age = 56 }
+                    new User() { Id = 1, FirstName = "Igor", LastName = "Bobro", Age = 22 },
+                    new User() { Id = 2, FirstName = "Andrew", LastName = "Ivanov", Age = 31 },
+                    new User() { Id = 3, FirstName = "Stas", LastName = "Maratov", Age = 24 },
+                    new User() { Id = 4, FirstName = "Max", LastName = "Braun", Age = 26 },
+                    new User() { Id = 5, FirstName = "Alex", LastName = "Perov", Age = 56 }
                 });
         }
     }
